@@ -21,7 +21,7 @@
   "dependencies": {
     "@aws-sdk/types": "^3.40.0",
     "axios": "^0.21.4",
-		"my-cloud-util": "git+https://github.com/spearsryan/my-cloud-util.git"
+    "my-cloud-util": "git+https://github.com/spearsryan/my-cloud-util.git"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.16.0",
