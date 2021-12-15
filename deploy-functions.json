@@ -1,0 +1,80 @@
+{
+	"functions": [
+		{
+      "name": "cognito-hub-create-user",
+      "sourceList": [
+				"out/cognito-hub-create-user.js"
+      ]
+    }, {
+      "name": "cognito-hub-get-application-by-id",
+      "sourceList": [
+				"out/cognito-hub-get-application-by-id.js"
+      ]
+    }, {
+      "name": "cognito-hub-get-registration-fields",
+      "sourceList": [
+				"out/cognito-hub-get-registration-fields.js"
+      ]
+    }, {
+      "name": "cognito-hub-get-token-memcache",
+      "sourceList": [
+				"out/cognito-hub-get-token-memcache.js"
+      ]
+		}, {
+      "name": "cognito-hub-get-user",
+      "sourceList": [
+				"out/cognito-hub-get-user.js"
+      ]
+    }, {
+      "name": "cognito-hub-testing-ground",
+      "sourceList": [
+				"out/cognito-hub-testing-ground.js"
+      ]
+    }, {
+      "name": "cognito-hub-update-user",
+      "sourceList": [
+				"out/cognito-hub-update-user.js"
+      ]
+		}, {
+      "name": "cognito-hub-user-status",
+      "sourceList": [
+				"out/cognito-hub-user-status.js"
+      ]
+    }, {
+      "name": "cognito-hub-verify-redirect-url",
+      "sourceList": [
+				"out/cognito-hub-verify-redirect-url.js"
+      ]
+    }, {
+      "name": "cognito-post-auth-trigger",
+      "sourceList": [
+				"out/cognito-post-auth-trigger.js"
+			]
+    }, {
+      "name": "cognito-pre-auth-trigger",
+      "sourceList": [
+				"out/cognito-pre-auth-trigger.js"
+			]
+    }, {
+      "name": "CognitoPreSignUp",
+      "sourceList": [
+				"out/cognito-pre-sign-up.js"
+			]
+    }, {
+      "name": "cognito-pre-token-generation",
+      "sourceList": [
+				"out/cognito-pre-token-generation.js"
+			]
+		}, {
+      "name": "cognito-refresh-token",
+      "sourceList": [
+				"out/cognito-refresh-token.js"
+			]
+    }, {
+      "name": "cognito-token-by-authorization-code",
+			"sourceList": [
+				"out/cognito-token-by-authorization-code.js"
+			]
+    }
+	]
+}

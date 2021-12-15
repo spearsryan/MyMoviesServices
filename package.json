@@ -1,0 +1,46 @@
+{
+  "name": "my-movies-services",
+  "version": "1.0.0",
+  "description": "My Movies Services",
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spearsryan/MyMoviesServices.git"
+  },
+  "homepage": "https://github.com/spearsryan/MyMoviesServices#readme",
+  "main": "",
+  "sideEffects": false,
+  "scripts": {
+    "clear_jest": "jest --clearCache",
+    "test": "jest",
+    "build": "webpack",
+    "release": "npm version patch && git push && git push --tags",
+    "compile": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@aws-sdk/types": "^3.40.0",
+    "axios": "^0.21.4",
+		"my-cloud-util": "git+https://github.com/spearsryan/my-cloud-util.git"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
+    "@types/aws-lambda": "^8.10.86",
+    "@types/babel__generator": "^7.6.3",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "@types/webpack": "^5.28.0",
+    "aws-sdk": "^2.1045.0",
+    "babel-jest": "^27.4.2",
+    "jest": "^27.4.3",
+    "path": "^0.12.7",
+    "ts-jest": "^27.1.1",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0",
+    "ts-transformer-keys": "^0.4.3",
+    "typescript": "^4.3.5",
+    "webpack": "^5.65.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.1"
+  }
+}

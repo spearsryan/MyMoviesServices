@@ -1,0 +1,19 @@
+version: 0.2
+env:
+  parameter-store:
+    TOKEN: GITHUB_TOKEN
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - git config --global url."https://$TOKEN@github.com".insteadOf "ssh://git@github.com"
+      - git config --global --add url."https://$TOKEN@github.com/".insteadOf "https://github.com/"
+  pre_build:
+    commands:
+      - npm install -g https://github.com/growmark/gmk-cloud-utils.git
+      - npm install
+      - npm run build
+  build:
+    commands:
+      - gcu ulc -c $CODEBUILD_SRC_DIR/deploy-functions.json

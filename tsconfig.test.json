@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"module": "CommonJS",
+		"target": "ES2017",
+		"lib": ["ES2019"],
+		"noImplicitAny": true,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"skipLibCheck": true,
+		"experimentalDecorators": true,
+		"esModuleInterop": true,
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["./src/**/*.ts", "./test/**/*.ts", "src/shims/**/*.ts"],
+	"exclude": [ "node_modules", "**/*.spec.ts", "dist" ]
+}
