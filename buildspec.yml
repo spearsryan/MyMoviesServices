@@ -1,7 +1,7 @@
 version: 0.2
-env:
-  parameter-store:
-    TOKEN: GITHUB_TOKEN
+# env:
+#   parameter-store:
+#     TOKEN: GITHUB_TOKEN
 phases:
   install:
     runtime-versions:
