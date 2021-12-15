@@ -10,6 +10,11 @@
       "sourceList": [
 				"out/get-movie-by-id.js"
       ]
+		}, {
+			"name": "GetMovies",
+      "sourceList": [
+				"out/get-movies.js"
+      ]
 		}
 	]
 }
