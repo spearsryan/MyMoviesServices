@@ -1,6 +1,7 @@
 const randomBytes = require('crypto').randomBytes;
 const AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient();
+import { MOVIE } from './types/Movie';
 
 exports.handler = (event: any, context: any, callback: any) => {
 	console.log('event', JSON.stringify(event));
@@ -35,7 +36,20 @@ exports.handler = (event: any, context: any, callback: any) => {
 	const movieId = toUrlString(randomBytes(16));
 	console.log('Received event (', movieId, '): ', event);
 
-	saveMovie(movieId, username, requestBody.MovieName).then(() => {
+	const movie: MOVIE = {
+		MovieId: movieId,
+		MovieName: requestBody.MovieName,
+		Own: requestBody.Own,
+		OwnFormat: requestBody.OwnFormat,
+		Requester: requestBody.Requester,
+		RequestTime: new Date().toISOString(),
+		WatchStatus: requestBody.WatchStatus,
+		User: requestBody.Requester,
+		Wishlist: requestBody.Wishlist,
+		WishlistFormat: requestBody.WishlistFormat
+	};
+
+	saveMovie(movie).then(() => {
 		// You can use the callback function to provide a return value from your Node.js
 		// Lambda functions. The first parameter is used for failed invocations. The
 		// second parameter specifies the result data of the invocation.
@@ -44,12 +58,7 @@ exports.handler = (event: any, context: any, callback: any) => {
 		// the result object must use the following structure.
 		callback(null, {
 			statusCode: 201,
-			body: JSON.stringify({
-				MovieId: movieId,
-				MovieName: requestBody.MovieName,
-				OtherData: 'Here is other data',
-				Requester: username
-			}),
+			body: JSON.stringify(movie),
 			headers: {
 				'Access-Control-Allow-Origin': '*',
 			}
@@ -65,15 +74,10 @@ exports.handler = (event: any, context: any, callback: any) => {
 	});
 }
 
-function saveMovie(movieId: any, username: any, movieName: any) {
+function saveMovie(movie: MOVIE) {
 	return ddb.put({
 		TableName: 'Movies',
-		Item: {
-			MovieId: movieId,
-			User: username,
-			MovieName: movieName,
-			RequestTime: new Date().toISOString()
-		}
+		Item: movie
 	}).promise();
 }
 
