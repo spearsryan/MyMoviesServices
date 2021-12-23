@@ -74,7 +74,7 @@ exports.handler = (event: any, context: any, callback: any) => {
 	});
 }
 
-function saveMovie(movie: MOVIE) {
+function saveMovie(movie: Movie) {
 	return ddb.put({
 		TableName: 'Movies',
 		Item: movie
