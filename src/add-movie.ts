@@ -45,7 +45,6 @@ exports.handler = (event: any, context: any, callback: any) => {
 		Requester: requestBody.Requester,
 		RequestTime: new Date().toISOString(),
 		WatchStatus: requestBody.WatchStatus,
-		User: requestBody.Requester,
 		Wishlist: requestBody.Wishlist,
 		WishlistFormat: requestBody.WishlistFormat
 	};
