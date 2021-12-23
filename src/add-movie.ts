@@ -1,7 +1,7 @@
 const randomBytes = require('crypto').randomBytes;
 const AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient();
-import { MOVIE } from './types/Movie';
+import { Movie } from './types/Movie';
 
 exports.handler = (event: any, context: any, callback: any) => {
 	console.log('event', JSON.stringify(event));
@@ -36,7 +36,7 @@ exports.handler = (event: any, context: any, callback: any) => {
 	const movieId = toUrlString(randomBytes(16));
 	console.log('Received event (', movieId, '): ', event);
 
-	const movie: MOVIE = {
+	const movie: Movie = {
 		MovieId: movieId,
 		MovieName: requestBody.MovieName,
 		AlphabeticalMovieName: requestBody.AlphabeticalMovieName,
