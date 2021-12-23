@@ -39,6 +39,7 @@ exports.handler = (event: any, context: any, callback: any) => {
 	const movie: MOVIE = {
 		MovieId: movieId,
 		MovieName: requestBody.MovieName,
+		AlphabeticalMovieName: requestBody.AlphabeticalMovieName,
 		Own: requestBody.Own,
 		OwnFormat: requestBody.OwnFormat,
 		Requester: requestBody.Requester,

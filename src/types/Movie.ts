@@ -1,6 +1,7 @@
 export type Movie = {
 	MovieId?: string;
 	MovieName?: string;
+	AlphabeticalMovieName?: string;
 	Own?: boolean;
 	OwnFormat?: string;
 	Requester?: string;
