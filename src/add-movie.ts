@@ -1,12 +1,14 @@
-const randomBytes = require('crypto').randomBytes;
-const AWS = require('aws-sdk');
-const ddb = new AWS.DynamoDB.DocumentClient();
+import AWS from 'aws-sdk';
+import { randomBytes } from 'crypto';
 import { Movie } from './types/Movie';
+import { errorResponse } from './util/error-response';
 
 exports.handler = (event: any, context: any, callback: any) => {
 	console.log('event', JSON.stringify(event));
 	console.log('context', JSON.stringify(context));
 	console.log('callback', JSON.stringify(callback));
+
+	const origin = event.headers.Origin || event.headers.origin;
 
 	// The body field of the event in a proxy integration is a raw string.
 	// In order to extract meaningful values, we need to first parse this string
@@ -42,7 +44,7 @@ exports.handler = (event: any, context: any, callback: any) => {
 		AlphabeticalMovieName: requestBody.AlphabeticalMovieName,
 		Own: requestBody.Own,
 		OwnFormat: requestBody.OwnFormat,
-		Requester: requestBody.Requester,
+		Requester: username,
 		RequestTime: new Date().toISOString(),
 		WatchStatus: requestBody.WatchStatus,
 		Wishlist: requestBody.Wishlist,
@@ -62,7 +64,7 @@ exports.handler = (event: any, context: any, callback: any) => {
 			statusCode: 201,
 			body: JSON.stringify(movie),
 			headers: {
-				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Origin': origin,
 			}
 		});
 	}).catch((err: any) => {
@@ -77,6 +79,8 @@ exports.handler = (event: any, context: any, callback: any) => {
 }
 
 function saveMovie(movie: Movie) {
+	const ddb = new AWS.DynamoDB.DocumentClient();
+
 	return ddb.put({
 		TableName: 'Movies',
 		Item: movie
@@ -88,17 +92,4 @@ function toUrlString(buffer: any) {
 		.replace(/\+/g, '-')
 		.replace(/\//g, '_')
 		.replace(/=/g, '');
-}
-
-function errorResponse(errorMessage: any, awsRequestId: any, callback: any) {
-	callback(null, {
-		statusCode: 500,
-		body: JSON.stringify({
-			Error: errorMessage,
-			Reference: awsRequestId,
-		}),
-		headers: {
-			'Access-Control-Allow-Origin': '*',
-		},
-	});
 }

@@ -1,25 +1,26 @@
 import AWS from 'aws-sdk';
-
-// const origin = 'http://localhost:8080';
+import { errorResponse } from './util/error-response';
 
 exports.handler = async (event: any, context: any, callback: any) => {
 	console.log('event', JSON.stringify(event));
 	console.log('context', JSON.stringify(context));
 	console.log('callback', JSON.stringify(callback));
 
+	const origin = event.headers.Origin || event.headers.origin;
+
 	try {
-		var items = await getMovies();
-		console.log('items: ', items);
+		var records = await getMovies();
+		console.log('records: ', records);
 
 		callback(null, {
 			statusCode: 200,
-			// headers: {
-			// 	'Access-Control-Allow-Origin': origin,
-			// },
-			body: JSON.stringify(items.Items),
+			headers: {
+				'Access-Control-Allow-Origin': origin,
+			},
+			body: JSON.stringify(records.Items),
 		});
 	} catch (err) {
-		errorResponse(err.message, context.awsRequestId, callback);
+		errorResponse(err.message, context.awsRequestId, callback, origin);
 	}
 }
 
@@ -31,19 +32,4 @@ function getMovies() {
 	};
 
 	return ddb.scan(params).promise();
-}
-
-function errorResponse(errorMessage: any, awsRequestId: any, callback: any) {
-	console.log(errorMessage);
-
-	callback(null, {
-		statusCode: 500,
-		body: JSON.stringify({
-			Error: errorMessage,
-			Reference: awsRequestId,
-		}),
-		// headers: {
-		// 	'Access-Control-Allow-Origin': origin,
-		// },
-	});
 }
