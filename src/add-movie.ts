@@ -46,7 +46,9 @@ exports.handler = (event: any, context: any, callback: any) => {
 		RequestTime: new Date().toISOString(),
 		WatchStatus: requestBody.WatchStatus,
 		Wishlist: requestBody.Wishlist,
-		WishlistFormat: requestBody.WishlistFormat
+		WishlistFormat: requestBody.WishlistFormat,
+		Tags: requestBody.Tags,
+		Notes: requestBody.Notes
 	};
 
 	saveMovie(movie).then(() => {

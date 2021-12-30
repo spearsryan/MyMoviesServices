@@ -1,7 +1,6 @@
-import { randomBytes } from 'crypto';
 import AWS from 'aws-sdk';
 
-const origin = 'http://localhost:8080';
+// const origin = 'http://localhost:8080';
 
 exports.handler = async (event: any, context: any, callback: any) => {
 	console.log('event', JSON.stringify(event));
@@ -14,9 +13,9 @@ exports.handler = async (event: any, context: any, callback: any) => {
 
 		callback(null, {
 			statusCode: 200,
-			headers: {
-				'Access-Control-Allow-Origin': origin,
-			},
+			// headers: {
+			// 	'Access-Control-Allow-Origin': origin,
+			// },
 			body: JSON.stringify(items.Items),
 		});
 	} catch (err) {
@@ -43,8 +42,8 @@ function errorResponse(errorMessage: any, awsRequestId: any, callback: any) {
 			Error: errorMessage,
 			Reference: awsRequestId,
 		}),
-		headers: {
-			'Access-Control-Allow-Origin': origin,
-		},
+		// headers: {
+		// 	'Access-Control-Allow-Origin': origin,
+		// },
 	});
 }

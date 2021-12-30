@@ -9,4 +9,6 @@ export type Movie = {
 	WatchStatus?: string;
 	Wishlist?: boolean;
 	WishlistFormat?: string;
+	Tags?: Array<string>;
+	Notes?: string;
 };
